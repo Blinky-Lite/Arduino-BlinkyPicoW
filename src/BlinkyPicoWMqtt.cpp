@@ -247,11 +247,12 @@ void BlinkyPicoWMqtt::setup_wifi()
   setCommLEDPin(false);
   if ( m_wifiStatus == WL_CONNECTED)
   {
+    WiFi.BSSID(m_mqttDataHeader.routerMac);
+    WiFi.macAddress(m_mqttDataHeader.deviceMac);
     if (m_chattyCathy)
     {
       Serial.print("    WiFi connected with IP address: ");
       Serial.println(WiFi.localIP());
-      WiFi.BSSID(m_mqttDataHeader.routerMac);
       Serial.print("    Router MAC: ");
       Serial.print(m_mqttDataHeader.routerMac[0],HEX);
       Serial.print(":");
@@ -265,7 +266,6 @@ void BlinkyPicoWMqtt::setup_wifi()
       Serial.print(":");
       Serial.println(m_mqttDataHeader.routerMac[5],HEX);
 
-      WiFi.macAddress(m_mqttDataHeader.deviceMac);
       Serial.print("    Device MAC: ");
       Serial.print(m_mqttDataHeader.deviceMac[0],HEX);
       Serial.print(":");
