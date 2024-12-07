@@ -1,0 +1,35 @@
+#######################################
+# Syntax Coloring Map For BlinkyPicoW
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+BlinkyPicoW	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setSsid                 KEYWORD2
+setWifiPassword 	    KEYWORD2
+setMqttServer 	        KEYWORD2
+setMqttUsername 	    KEYWORD2
+setMqttPassword 	    KEYWORD2
+setBox 	                KEYWORD2
+setTrayType 	        KEYWORD2
+setTrayName 	        KEYWORD2
+setCubeType 	        KEYWORD2
+setMqttKeepAlive 	    KEYWORD2
+setMqttSocketTimeout 	KEYWORD2
+setMqttPort 	        KEYWORD2
+setMqttLedFlashMs 	    KEYWORD2
+setHdwrWatchdogMs 	    KEYWORD2
+publishCubeData 	    KEYWORD2
+retrieveCubeSetting 	KEYWORD2
+begin 	                KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
