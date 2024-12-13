@@ -17,6 +17,7 @@
 #define MQTT_SOCKETTIMEOUT             4
 #define MQTT_PORT                   1883
 #define MQTT_RETRY                  3000
+#define ROUTER_DELAY                4000
 
 struct BlinkyPicoWMqttDataHeader
 {
@@ -74,6 +75,7 @@ class BlinkyPicoWMqtt
     uint16_t                m_mqttKeepAlive = MQTT_KEEP_ALIVE;
     uint16_t                m_mqttSocketTimeout = MQTT_SOCKETTIMEOUT;
     int                     m_mqttPort = MQTT_PORT;
+    int                     m_routerDelay = ROUTER_DELAY;
     
     void            setCommLEDPin(boolean ledState){m_commLEDState = ledState;digitalWrite(m_commLEDPin, m_commLEDState);};
     void            resetButtonPressed();
@@ -105,6 +107,7 @@ class BlinkyPicoWMqtt
     void            setMqttLedFlashMs(int mqttLedFlashMs){m_mqttLedFlashMs = mqttLedFlashMs;};
     void            setMqttPort(int mqttPort){m_mqttPort = mqttPort;};
     void            setHdwrWatchdogMs(uint32_t hdwrWatchdogMs){m_hdwrWatchdogMs = hdwrWatchdogMs;};
+    void            setRouterDelay(int routerDelay){m_routerDelay = routerDelay;};
     
 };
 

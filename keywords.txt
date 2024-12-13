@@ -29,6 +29,7 @@ setHdwrWatchdogMs 	    KEYWORD2
 publishCubeData 	    KEYWORD2
 retrieveCubeSetting 	KEYWORD2
 begin 	                KEYWORD2
+setRouterDelay          KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

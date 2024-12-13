@@ -5,7 +5,14 @@ BlinkyPicoWMqtt::BlinkyPicoWMqtt(PubSubClient* pmqttClient)
 {
   m_pmqttClient = pmqttClient;
   m_sizeofMqttDataHeader = sizeof(m_mqttDataHeader);
-
+  m_mqttDataHeader.state = 1;
+  m_mqttDataHeader.forceArchiveData = 0;
+  m_mqttDataHeader.watchdog = 0;
+  for (int ii = 0; ii < 6; ++ ii)
+  {
+    m_mqttDataHeader.deviceMac[ii] = 0;
+    m_mqttDataHeader.routerMac[ii] = 0;
+  }
 }
 void BlinkyPicoWMqtt::begin(int chattyCathy, int commLEDPin, int resetButtonPin, boolean useFlashStorage, size_t cubeSetting, size_t cubeReading)
 {
@@ -242,9 +249,21 @@ void BlinkyPicoWMqtt::setup_wifi()
       }
     }
   }
-  
   if (m_chattyCathy) Serial.println("");
+// Delay start -  minimum of 2000 needed to get router address
+  if (m_chattyCathy) Serial.print("    Waiting for router");
+  setCommLEDPin(true);
+  int iwait = 0; 
+  while (iwait < m_routerDelay)
+  {
+    if (m_chattyCathy) Serial.print(".");
+    rp2040.wdt_reset();;
+    delay(500);
+    iwait = iwait + 500;
+  }
   setCommLEDPin(false);
+  if (m_chattyCathy) Serial.println(" ");
+// Delay end
   if ( m_wifiStatus == WL_CONNECTED)
   {
     WiFi.BSSID(m_mqttDataHeader.routerMac);
@@ -289,7 +308,6 @@ void BlinkyPicoWMqtt::setup_wifi()
     delay(1000);
     rp2040.reboot();
   }
-
 }
 void BlinkyPicoWMqtt::checkMqttConnection() 
 {
@@ -425,6 +443,7 @@ void BlinkyPicoWMqtt::loop()
   unsigned long nowTime = millis();
   if (m_wifiAccessPointMode)
   {
+    setCommLEDPin(true);
     serveWebPage();
     readWebPage();
     rp2040.wdt_reset();;
