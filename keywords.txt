@@ -30,6 +30,7 @@ publishCubeData 	    KEYWORD2
 retrieveCubeSetting 	KEYWORD2
 begin 	                KEYWORD2
 setRouterDelay          KEYWORD2
+isWiFiConnected         KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

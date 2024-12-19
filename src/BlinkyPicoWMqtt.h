@@ -32,7 +32,7 @@ class BlinkyPicoWMqtt
 {
   private:
     boolean                 m_useFlashStorage = true;
-    int                     m_wifiStatus = 0;
+    volatile int            m_wifiStatus = 0;
     int                     m_commLEDPin = LED_BUILTIN;
     boolean                 m_commLEDState = false;
     boolean                 m_chattyCathy = false;
@@ -108,6 +108,7 @@ class BlinkyPicoWMqtt
     void            setMqttPort(int mqttPort){m_mqttPort = mqttPort;};
     void            setHdwrWatchdogMs(uint32_t hdwrWatchdogMs){m_hdwrWatchdogMs = hdwrWatchdogMs;};
     void            setRouterDelay(int routerDelay){m_routerDelay = routerDelay;};
+    boolean         isWiFiConnected(){if (m_wifiStatus == WL_CONNECTED) return true; return false;};
     
 };
 
