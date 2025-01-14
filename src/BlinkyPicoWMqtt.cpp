@@ -508,6 +508,8 @@ void BlinkyPicoWMqtt::loop()
     m_mqttDataHeader.watchdog = m_mqttDataHeader.watchdog + 1;
     if (m_mqttDataHeader.watchdog > 65534) m_mqttDataHeader.watchdog = 0;
     
+    WiFi.BSSID(m_mqttDataHeader.routerMac);
+    
     uint8_t* memPtr = m_pcubeDataSend;
     uint8_t* datPtr = (uint8_t*) &m_mqttDataHeader;
     for (int ii = 0; ii < m_sizeofMqttDataHeader; ++ii)
