@@ -581,6 +581,7 @@ void BlinkyPicoWMqtt::readWebPage()
     {
       String data = header.substring(header.indexOf("ssid="),header.length());
       m_ssid               = replaceHtmlEscapeChar(data.substring(5,data.indexOf("&pass=")));
+      m_ssid.replace('+', ' ');
       m_wifiPassword       = replaceHtmlEscapeChar(data.substring(data.indexOf("&pass=")  + 6,data.indexOf("&serv=")));
       m_mqttServer         = replaceHtmlEscapeChar(data.substring(data.indexOf("&serv=")  + 6,data.indexOf("&unam=")));
       m_mqttUsername       = replaceHtmlEscapeChar(data.substring(data.indexOf("&unam=")  + 6,data.indexOf("&mpas=")));
